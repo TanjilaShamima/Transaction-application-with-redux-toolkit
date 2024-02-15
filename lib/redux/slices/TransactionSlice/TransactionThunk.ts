@@ -13,6 +13,7 @@ export const fetchTransaction = createAppAsyncThunk(
 export const addNewTransaction = createAppAsyncThunk(
   "transaction/addNewTransaction",
   async (transaction: TransactionType) => {
+    console.log('transaction', transaction);
     const data = await createNewTransaction(transaction);
     return data;
   }

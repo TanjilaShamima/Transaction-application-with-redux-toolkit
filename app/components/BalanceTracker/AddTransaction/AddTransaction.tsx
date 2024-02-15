@@ -2,8 +2,11 @@
 
 import { useDispatch, useSelector } from "@/lib/redux";
 import { TransactionType } from "@/lib/redux/slices/TransactionSlice/TransactionSlice";
-import { addNewTransaction } from "@/lib/redux/slices/TransactionSlice/TransactionThunk";
-import React, { useState } from "react";
+import {
+  addNewTransaction,
+  fetchTransaction,
+} from "@/lib/redux/slices/TransactionSlice/TransactionThunk";
+import React, { useEffect, useState } from "react";
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -16,10 +19,22 @@ const AddTransaction = () => {
   });
 
   const handleSubmit = () => {
-    dispatch(
-      addNewTransaction({ ...transaction, id: transactions.length + 1 })
-    );
+    const newTransaction = {
+      ...transaction,
+      id: transactions?.length + 1,
+    };
+    setTransaction({
+        name: "",
+        type: "income",
+        amount: 0,
+        id: null,
+      });
+    dispatch(addNewTransaction(newTransaction));
   };
+
+  useEffect(() => {
+    dispatch(fetchTransaction());
+  }, [dispatch]);
 
   return (
     <div className="form">
@@ -88,7 +103,7 @@ const AddTransaction = () => {
           }
         />
       </div>
-      <button className="btn" onClick={handleSubmit}>
+      <button className="btn" type="submit" onClick={handleSubmit}>
         Add Transaction
       </button>
       <button className="btn cancel_edit">Cancel Edit</button>

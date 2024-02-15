@@ -1,7 +1,7 @@
 import React from "react";
 import CurrentBalance from "./CurrentBalance/CurrentBalance";
 import AddTransaction from "./AddTransaction/AddTransaction";
-import MonthlyTransaction from "./MonthlyTransaction/MonthlyTransaction";
+import MonthlyTransaction from "./TransactionList/TransactionList";
 
 const BalanceTracker = () => {
   return (
