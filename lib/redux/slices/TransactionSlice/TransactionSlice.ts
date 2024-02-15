@@ -9,7 +9,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchTransaction } from "./TransactionThunk";
 
 export type TransactionType = {
-  id: number;
+  id: number|null;
   name: string;
   type: string;
   amount: number;
